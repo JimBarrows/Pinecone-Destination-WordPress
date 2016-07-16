@@ -1,0 +1,29 @@
+{
+  "name" : "pinecone-destinations",
+  "version" : "1.0.0",
+  "description" : "RabbitMq Subscribers",
+  "main" : "index.js",
+  "scripts" : {
+	"destinations:start:dev" : "nodemon index.js --exec babel-node --presets es2015,stage-2",
+	"start" : "nodemon index.js --exec babel-node --presets es2015,stage-2",
+	"test" : "echo \"Error: no test specified\" && exit 1",
+	"destinations:docker:run:dev" : "docker run --detach --name pinecone-destinations --link pinecone-mongo:mongo --link pinecone-rabbitmq:rabbitmq pinecone/destinations",
+	"pre-destinations:docker:build:dev" : "mkdir -p ./node_modules/pinecone-models/src; cp -r ../models/src/ ./node_modules/pinecone-models/src; cp -r ../models/package.json ./node_modules/pinecone-models",
+	"destinations:docker:build:dev" : "docker build . -t pinecone/destinations"
+  },
+  "author" : "",
+  "license" : "ISC",
+  "dependencies" : {
+	"amqplib" : "^0.4.2",
+	"babel-cli" : "^6.10.1",
+	"babel-core" : "^6.10.4",
+	"babel-preset-es2015" : "^6.9.0",
+	"babel-preset-stage-2" : "^6.11.0",
+	"bluebird" : "^3.4.1",
+	"moment" : "^2.14.1",
+	"mongoose" : "^4.5.3",
+	"nodemon" : "^1.9.2",
+	"pinecone-models" : "1.0.0",
+	"wordpress" : "^1.2.2"
+  }
+}
