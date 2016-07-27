@@ -4,13 +4,14 @@
 'use strict';
 import amqp from "amqplib";
 import promise from "bluebird";
+import Promise from "bluebird";
 import moment from "moment";
 import wordpress from "wordpress";
 import mongoose from "mongoose";
-import mongConfig from "pinecone-models/src/mongoose.config";
 import Content from "pinecone-models/src/Content";
 import Channel from "pinecone-models/src/Channel";
-mongConfig;
+mongoose.Promise = Promise;
+mongoose.connect('mongodb://mongo/pinecone');
 const wp = promise.promisifyAll(wordpress);
 
 const queueName  = 'wordperfect';
@@ -20,7 +21,6 @@ const channel    = connection.then((conn) =>conn.createChannel());
 promise.join(connection, channel, (con, ch) =>
 				ch.assertQueue(queueName, {durable: true})
 						.then(() => ch.consume(queueName, function (msg) {
-							console.log(" [x] Received", msg.content.toString());
 
 							let transmissionReport = {
 								timeStart: moment()
@@ -79,5 +79,4 @@ promise.join(connection, channel, (con, ch) =>
 							})
 
 						}, {noAck: true})))
-		.then(() => console.log(' [*] Waiting for messages. To exit press CTRL+C'))
-		.then(null, console.warn);
+		.catch((error) => consolelog("Error receiving wordpress: ", error));
