@@ -8,12 +8,15 @@
 	"email" : "jim@reallybigtree.com"
   },
   "scripts" : {
-	"pinecone:destinations:wordpress:dev:start" : "nodemon index.js --exec babel-node --presets es2015,stage-2",
-	"start" : "nodemon index.js --exec babel-node --presets es2015,stage-2",
-	"test" : "echo \"Error: no test specified\" && exit 1",
-	"pinecone:destination:wordpress:docker:dev:run" : "docker run --detach --name pinecone-wordpress-destinations --link pinecone-mongo:mongo --link pinecone-rabbitmq:rabbitmq registry.gitlab.com/reallybigtree/pinecone-destination-wordpress",
+
 	"pinecone:destinations:wordpress:docker:build" : "docker build -t registry.gitlab.com/reallybigtree/pinecone-destination-wordpress .",
-	"pinecone:destinations:wordpress:docker:push" : "docker push registry.gitlab.com/reallybigtree/pinecone-destination-wordpress"
+	"pinecone:destinations:wordpress:docker:push" : "docker push registry.gitlab.com/reallybigtree/pinecone-destination-wordpress",
+	"pinecone:destination:wordpress:docker:run" : "docker run --detach --name pinecone-wordpress-destinations --link pinecone-mongo:mongo --link pinecone-rabbitmq:rabbitmq registry.gitlab.com/reallybigtree/pinecone-destination-wordpress",
+	"pinecone:destinations:wordpress:start" : "nodemon index.js --exec babel-node --presets es2015,stage-2",
+	"pinecone:destinations:twitter:test:e2e" : "babel-node specs/run.js",
+	"prepinecone:destinations:wordpress:docker:build" : "npm install;npm prune",
+	"start" : "nodemon index.js --exec babel-node --presets es2015,stage-2",
+	"update:models" : "rm -rf node_modules/pinecone-models; npm install"
   },
   "author" : {
 	"name" : "Jim Barrows",

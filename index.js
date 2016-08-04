@@ -10,12 +10,18 @@ import wordpress from "wordpress";
 import mongoose from "mongoose";
 import Content from "pinecone-models/src/Content";
 import Channel from "pinecone-models/src/Channel";
+import Configuration from "./configurations";
 mongoose.Promise = Promise;
-mongoose.connect('mongodb://mongo/pinecone');
 const wp = promise.promisifyAll(wordpress);
 
-const queueName  = 'wordperfect';
-const connection = amqp.connect('amqp://rabbitmq');
+const env    = process.env.NODE_ENV || "development";
+const config = Configuration[env];
+
+console.log("config: ", config);
+
+mongoose.connect(config.mongoose.url);
+const queueName  = config.rabbitMq.queueName;
+const connection = amqp.connect(config.rabbitMq.url);
 const channel    = connection.then((conn) =>conn.createChannel());
 
 promise.join(connection, channel, (con, ch) =>
@@ -79,4 +85,4 @@ promise.join(connection, channel, (con, ch) =>
 							})
 
 						}, {noAck: true})))
-		.catch((error) => consolelog("Error receiving wordpress: ", error));
+		.catch((error) => console.log("Error receiving wordpress: ", error));
