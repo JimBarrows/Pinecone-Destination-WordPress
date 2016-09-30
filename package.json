@@ -1,44 +1,44 @@
 {
-  "name" : "pinecone-destinations-wordpress",
-  "version" : "1.0.0",
-  "description" : "RabbitMq Wordpress Queue Subscriber",
-  "main" : "index.js",
-  "bugs" : {
-    "url" : "https://gitlab.com/ReallyBigTree/Pinecone-WordPress-Destination/issues",
-    "email" : "jim@reallybigtree.com"
+  "name": "pinecone-destinations-wordpress",
+  "version": "1.0.0",
+  "description": "RabbitMq Wordpress Queue Subscriber",
+  "main": "index.js",
+  "bugs": {
+    "url": "https://gitlab.com/ReallyBigTree/Pinecone-WordPress-Destination/issues",
+    "email": "jim@reallybigtree.com"
   },
-  "scripts" : {
-    "pinecone:destinations:wordpress:docker:build" : "docker build -t registry.gitlab.com/reallybigtree/pinecone-destination-wordpress .",
-    "pinecone:destinations:wordpress:docker:push" : "docker push registry.gitlab.com/reallybigtree/pinecone-destination-wordpress",
-    "pinecone:destination:wordpress:docker:run" : "docker run --detach --name pinecone-wordpress-destinations --link pinecone-mongo:mongo --link pinecone-rabbitmq:rabbitmq registry.gitlab.com/reallybigtree/pinecone-destination-wordpress",
-    "pinecone:destinations:wordpress:start" : "nodemon index.js --exec babel-node --presets es2015,stage-2",
-    "pinecone:destinations:twitter:test:e2e" : "babel-node specs/run.js",
-    "prepinecone:destinations:wordpress:docker:build" : "npm install;npm prune",
-    "start" : "nodemon index.js --exec babel-node --presets es2015,stage-2"
+  "scripts": {
+    "pinecone:destinations:wordpress:docker:build": "docker build -t registry.gitlab.com/reallybigtree/pinecone-destination-wordpress .",
+    "pinecone:destinations:wordpress:docker:push": "docker push registry.gitlab.com/reallybigtree/pinecone-destination-wordpress",
+    "pinecone:destination:wordpress:docker:run": "docker run --detach --name pinecone-wordpress-destinations --link pinecone-mongo:mongo --link pinecone-rabbitmq:rabbitmq registry.gitlab.com/reallybigtree/pinecone-destination-wordpress",
+    "pinecone:destinations:wordpress:start": "nodemon index.js --exec babel-node --presets es2015,stage-2",
+    "pinecone:destinations:twitter:test:e2e": "babel-node specs/run.js",
+    "prepinecone:destinations:wordpress:docker:build": "npm install;npm prune",
+    "start": "nodemon index.js --exec babel-node --presets es2015,stage-2"
   },
-  "author" : {
-    "name" : "Jim Barrows",
-    "email" : "jim@reallybigtree.com"
+  "author": {
+    "name": "Jim Barrows",
+    "email": "jim@reallybigtree.com"
   },
-  "contributors" : [],
-  "license" : "UNLICENSED",
-  "private" : true,
-  "repository" : {
-    "type" : "git",
-    "url" : "https://gitlab.com/ReallyBigTree/Pinecone-Destination-WordPress/tree/master"
+  "contributors": [],
+  "license": "UNLICENSED",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/ReallyBigTree/Pinecone-Destination-WordPress/tree/master"
   },
-  "dependencies" : {
-    "@reallybigtree/pinecone-models" : "^1.0.0",
-    "amqplib" : "^0.4.2",
-    "babel-cli" : "^6.10.1",
-    "babel-core" : "^6.10.4",
-    "babel-preset-es2015" : "^6.9.0",
-    "babel-preset-stage-2" : "^6.11.0",
-    "bluebird" : "^3.4.1",
-    "facebook-node-sdk" : "^0.2.0",
-    "moment" : "^2.14.1",
-    "mongoose" : "^4.5.3",
-    "nodemon" : "^1.9.2",
-    "wordpress" : "^1.2.2"
+  "dependencies": {
+    "@reallybigtree/pinecone-models": "^1.4.0",
+    "amqplib": "^0.4.2",
+    "babel-cli": "^6.16.0",
+    "babel-core": "^6.16.0",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-stage-2": "^6.16.0",
+    "bluebird": "^3.4.6",
+    "facebook-node-sdk": "^0.2.0",
+    "moment": "^2.15.1",
+    "mongoose": "^4.6.1",
+    "nodemon": "^1.10.2",
+    "wordpress": "^1.2.2"
   }
 }

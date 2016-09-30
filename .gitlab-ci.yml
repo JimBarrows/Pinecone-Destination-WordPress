@@ -1,16 +1,15 @@
-image: docker:git
-
 stages:
-  - deploy
+  - build
 
-deploy_ui_to_staging:
-  stage: deploy
-  environment: Development
+build_staging:
+  image: docker:git
+  stage: build
+  environment: staging
   services:
-       - docker:dind
+  - docker:dind
   script:
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN gitlab.com:5005
-    - docker build -t registry.gitlab.com/reallybigtree/pinecone-wordpress-destination .
-    - docker push registry.gitlab.com/reallybigtree/pinecone-wordpress-destination
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker build --build-arg NPM_TOKEN=6f3bcf35-125d-40da-bfab-dcfb6efece79 -t registry.gitlab.com/reallybigtree/pinecone-destination-wordpress .
+    - docker push registry.gitlab.com/reallybigtree/pinecone-destination-wordpress
   only:
-    - develop
+    - master
